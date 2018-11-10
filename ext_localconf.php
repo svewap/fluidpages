@@ -54,4 +54,8 @@ if (!defined ('TYPO3_MODE')) {
         'tx_fed_page_controller_action,tx_fed_page_controller_action_sub,tx_fed_page_flexform,tx_fed_page_flexform_sub,';
 
     unset($doktypeIcon);
+
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects'] = array_merge($GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects'], [
+        'FLUIDPAGETEMPLATE' => \FluidTYPO3\Fluidpages\ContentObject\FluidPageContentObject::class
+    ]);
 })();

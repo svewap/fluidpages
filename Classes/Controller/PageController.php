@@ -11,6 +11,7 @@ namespace FluidTYPO3\Fluidpages\Controller;
 use FluidTYPO3\Fluidpages\Service\ConfigurationService;
 use FluidTYPO3\Fluidpages\Service\PageService;
 use FluidTYPO3\Flux\Controller\AbstractFluxController;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Response;
 
 /**
@@ -70,6 +71,18 @@ class PageController extends AbstractFluxController implements PageControllerInt
     protected function initializeProvider()
     {
         $this->provider = $this->pageConfigurationService->resolvePageProvider($this->getRecord());
+    }
+
+    /**
+     * @return void
+     */
+    public function initializeViewVariables() {
+
+        $config = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        if (\is_array($config['variables'])) {
+            $this->view->assignMultiple($config['variables']);
+        }
+        parent::initializeViewVariables();
     }
 
     /**
