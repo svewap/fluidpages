@@ -189,6 +189,7 @@ class PageProvider extends AbstractProvider implements ProviderInterface
         }
         $action = $this->getControllerActionReferenceFromRecord($row) ?? 'default';
         $parts = explode('->', $action);
+        if (\count($parts) < 2) return null;
         $controllerActionName = end($parts);
         $controllerActionName{0} = strtolower($controllerActionName{0});
         return $controllerActionName;
