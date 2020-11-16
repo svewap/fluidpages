@@ -142,7 +142,7 @@ class PageService implements SingletonInterface
                 $fieldList,
                 $resolveParentPageUid
             );
-        } while (null !== $page);
+        } while (null !== $page && $page !== false);
         if (true === empty($resolvedMainTemplateIdentity) && true === empty($resolvedSubTemplateIdentity)) {
             // Neither directly configured "this page" nor inherited "sub" contains a valid value;
             // no configuration was detected at all.
